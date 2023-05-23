@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -27,7 +28,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projects.create');
     }
 
     /**
@@ -38,7 +39,16 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+
+        $data = $request->validated(); //prende i dati che ha validato
+
+        $project = new Project();
+        $project->fill($data);
+        $project->slug = Str::slug($data['name'], '-');
+        $project->save();
+
+        return redirect()->route('admin.projects.index')->with('messagge', 'Progento aggiunto con successo');
+        
     }
 
     /**
@@ -49,7 +59,7 @@ class ProjectController extends Controller
      */
     public function show(string $slug)
     {
-        $project = Project::where('slug', $slug)->first(); 
+        $project = Project::where('slug', $slug)->first();
         //dammi tutti i progetti dove il campo slug è uguale alla stringa slug che sto ricevendo
         //ottengo il progetto specifico con get ottengo una collection
         return view('admin.projects.show', compact('project'));

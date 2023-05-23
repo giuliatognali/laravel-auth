@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class StoreProjectRequest extends FormRequest
 {
     /**
@@ -11,9 +12,9 @@ class StoreProjectRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize() 
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,8 @@ class StoreProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=> 'required|unique:projects|string|max:150',
+            //'content'=> 'nullable|string'
         ];
     }
 }
