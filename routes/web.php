@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/', function(){
+    return view('welcome');
+});
 
 /* Route::get('/dashboard', function () {
     return view('admin.dashboard');
@@ -28,7 +30,11 @@ Route::middleware(['auth', 'verified'])
         ->group(function () {
     Route::get('/', [DashBoardController::class, 'index'])->name('dashboard');
 
-    Route::resource('projects', ProjectController::class);
+    Route::resource('projects', ProjectController::class)->parameters(['projects'=>'project:slug']);
+    //con parameters impostazione per usare slug come elemento di riferimento per la ricerca e non più id
+
+
+
     //Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     //Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     //Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

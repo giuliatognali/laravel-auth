@@ -47,9 +47,12 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show(string $slug)
     {
-        //
+        $project = Project::where('slug', $slug)->first(); 
+        //dammi tutti i progetti dove il campo slug è uguale alla stringa slug che sto ricevendo
+        //ottengo il progetto specifico con get ottengo una collection
+        return view('admin.projects.show', compact('project'));
     }
 
     /**

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mt-4">
     <div class="row justify-content-center">
-        <h2>Lista dei progetti</h2>
+        <h2 class="text-secondary">Lista dei progetti</h2>
         <table class="table">
             <thead>
               <tr>
@@ -22,8 +22,8 @@
                     <td>{{$project->content}}</td>
                     <td>{{$project->slug}}</td>
                     <td>
-                        <ul>
-                            <li><a href="" class='btn btn-primary'>Show</a></li>
+                        <ul class="d-flex gap-1 list-unstyled m-0">
+                            <li><a href="{{route('admin.projects.show', $project->slug)}}" class='btn btn-primary'>Show</a></li>
                             <li><a href="" class='btn btn-warning'>Edit</a></li>
                             <li><a href="" class='btn btn-danger'>Delete</a></li>
                         </ul>
