@@ -16,7 +16,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                         </div>
                         <div class="toast-body">
-                            {{session('message')}}
+                            {{ session('message') }}
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,8 @@
                                 <ul class="d-flex gap-1 list-unstyled m-0">
                                     <li><a href="{{ route('admin.projects.show', $project->slug) }}"
                                             class='btn btn-primary'>Show</a></li>
-                                    <li><a href="" class='btn btn-warning'>Edit</a></li>
+                                    <li><a href="{{ route('admin.projects.edit', $project) }}"
+                                            class='btn btn-warning'>Edit</a></li>
                                     <li><a href="" class='btn btn-danger'>Delete</a></li>
                                 </ul>
                             </td>
