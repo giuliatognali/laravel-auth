@@ -8,19 +8,7 @@
                 <p><a href="{{ route('admin.projects.create') }}" class="btn btn-primary">Create New Project</a></p>
             </div>
 
-            @if (session('message'))
-                <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                    <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                        <div class="toast-header">
-                            <strong class="me-auto">Notification</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body">
-                            {{ session('message') }}
-                        </div>
-                    </div>
-                </div>
-            @endif
+            @include('partials.message')
 
             <table class="table">
                 <thead>
@@ -46,7 +34,8 @@
                                     <li><a href="{{ route('admin.projects.edit', $project) }}"
                                             class='btn btn-warning'>Edit</a></li>
                                     <li><a href="#" class='btn btn-danger' data-bs-toggle="modal"
-                                            data-bs-target="#project-{{ $project->id }}">Delete</a></li> {{-- collegamento per aprire la modale --}}
+                                            data-bs-target="#project-{{ $project->id }}">Delete</a></li>
+                                    {{-- collegamento per aprire la modale --}}
                                     </li>
                                 </ul>
                             </td>
@@ -64,11 +53,12 @@
                                         <p>Are you sure?</p>
                                     </div>
                                     <div class="modal-footer">
-                                      {{-- usiamo il form di delete nella modale come bottone di conferma --}}
-                                      <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                                        {{-- usiamo il form di delete nella modale come bottone di conferma --}}
+                                        <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-primary"
+                                                data-bs-dismiss="modal">Close</button>
                                             <button type="submit" class='btn btn-danger'>Delete</button>
                                         </form>
                                     </div>
