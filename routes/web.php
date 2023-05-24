@@ -33,8 +33,6 @@ Route::middleware(['auth', 'verified'])
     Route::resource('projects', ProjectController::class)->parameters(['projects'=>'project:slug']);
     //con parameters impostazione per usare slug come elemento di riferimento per la ricerca e non più id
 
-
-
     //Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     //Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     //Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

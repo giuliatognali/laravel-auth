@@ -3,7 +3,7 @@
 @section('content')
     <div class="container mt-4">
         <div class="row justify-content-start">
-            <h2 class="text-secondary">Crea nuovo progetto</h2>
+            <h2 class="text-secondary">Create a new project</h2>
             
             {{-- errori di validazione --}}
             @if ($errors->any())

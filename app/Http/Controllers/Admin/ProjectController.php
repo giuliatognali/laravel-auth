@@ -47,7 +47,8 @@ class ProjectController extends Controller
         $project->slug = Str::slug($data['name'], '-');
         $project->save();
 
-        return redirect()->route('admin.projects.index')->with('messagge', 'Progetto aggiunto con successo');
+        return redirect()->route('admin.projects.index')
+        ->with('message', 'Progetto aggiunto con successo');
         
     }
 

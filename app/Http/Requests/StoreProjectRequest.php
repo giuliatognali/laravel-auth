@@ -14,7 +14,7 @@ class StoreProjectRequest extends FormRequest
      */
     public function authorize() 
     {
-        return true;
+        return true;  //abilitiamo il poter affettuare una modifica
     }
 
     /**
