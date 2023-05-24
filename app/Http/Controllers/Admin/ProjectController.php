@@ -105,6 +105,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        //$old_id =$project->id; //salva l'id prima di cancellarlo per poterlo inserire nel messaggio
+        $project->delete();
+        return redirect()->route('admin.projects.index')
+        ->with('message',  "Project $project->name deleted successfully");
+
     }
 }
