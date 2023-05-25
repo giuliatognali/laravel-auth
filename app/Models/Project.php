@@ -9,5 +9,5 @@ class Project extends Model
 {
     use HasFactory;
     protected $fillable =['name', 'content'];
-    //protected $guarded = ['slug']; //il mass update prenderà in considerazione tutto tranne lo slug
+    //protected $guarded = ['slug', 'image']; //il mass update prenderà in considerazione tutto tranne lo slug e image
 }
