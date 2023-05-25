@@ -8,10 +8,24 @@ import '~resources/scss/app.scss';
 import.meta.glob([
     '../img/**'
 ])
-//preview img upload 
- const imageInput = document.querySelector('#image');
 
- imageInput.addEventListener('change', showPreview);
+const imageInput = document.querySelector('#image');   //preview img upload 
+
+const setImageInput = document.getElementById('set_image');
+const imageInputContainer = document.getElementById('img-input-container');
+
+
+
+imageInput.addEventListener('change', showPreview);
+setImageInput.addEventListener('change', function () {
+    if (setImageInput.checked) {
+        imageInputContainer.classList.remove('d-none');
+        imageInputContainer.classList.add('d-block');
+    } else {
+        imageInputContainer.classList.remove('d-block');
+        imageInputContainer.classList.add('d-none');
+    }
+});
 
 function showPreview(event) {
     if (event.target.files.length > 0) {

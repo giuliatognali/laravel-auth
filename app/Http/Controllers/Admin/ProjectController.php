@@ -99,11 +99,19 @@ class ProjectController extends Controller
         $data = $request->validated();
         $project->slug = Str::slug($data['name']);
 
-        if(isset($data['image'])){
-            if($project->image){        //se esite l'immagine allora la cancello
-                Storage::delete($project->image);
-            } 
-            $project->image= Storage::put('uploads', $data['image']);
+        if(empty($data['set_image'])){   //se l'img non è settata, quindi empty
+            if($project->image){            //se l'immagine c'era la cancello e svuoto il valore (null)
+            Storage::delete($project->image);
+            $project->image = null;  
+            }
+            
+        } else{
+            if(isset($data['image'])){
+                if($project->image){        //se setto un immagine e se esiteva un'immagine prima allora la cancello
+                    Storage::delete($project->image);
+                } 
+                $project->image= Storage::put('uploads', $data['image']);
+            }
         }
 
         $project->update($data);
