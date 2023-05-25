@@ -24,7 +24,7 @@
                     @foreach ($projects as $project)
                         <tr>
                             <th scope="row">{{ $project->id }}</th>
-                            <td>{{ $project->name }}</td>
+                            <td>@if($project->image) <a href="#" class="btn btn-primary">Img</a> @endif {{ $project->name }}</td>
                             <td>{{ $project->content }}</td>
                             <td>{{ $project->slug }}</td>
                             <td>
@@ -44,7 +44,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Warning!</h1>
+                                        <h1 class="modal-title fs-5" id="project-{{ $project->id }}">Warning!</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>

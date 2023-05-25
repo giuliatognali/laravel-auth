@@ -93,12 +93,22 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
+
+
+
         $data = $request->validated();
+        $project->slug = Str::slug($data['name']);
+
+        if(isset($data['image'])){
+            if($project->image){        //se esite l'immagine allora la cancello
+                Storage::delete($project->image);
+            } 
+            $project->image= Storage::put('uploads', $data['image']);
+        }
 
         $project->update($data);
 
-        $project->slug = Str::slug($data['name'], '-');
-        $project->save();
+        //$project->save();
 
         return redirect()->route('admin.projects.index')
         ->with('message',  "Project $project->name updated successfully");
